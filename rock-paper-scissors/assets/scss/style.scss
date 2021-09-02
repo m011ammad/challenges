@@ -1,0 +1,54 @@
+@import "_bootstrap";
+@import "_variable";
+@import "_reboot";
+
+.main {
+    width: 100%;
+    height: 100vh;
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.main__images {
+    display: flex;
+    width: 100%;
+    max-width: 700px;
+    justify-content: center;
+    align-items: center;
+    .images-holder {
+        width: 33%;
+        margin: 10px;
+    }
+    img {
+        display: inline-block;
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+        box-shadow: $shadow;
+        &:hover {
+            filter: brightness(.9);
+        }
+    }
+}
+.main__result {
+    min-height: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    #result-txt {
+        display: block;
+        font-size: 34px;
+        font-weight: bold;
+    }
+    #result-txt-info {
+        display: block;
+        font-size: 26px;
+    }
+    #result-txt-score {
+        display: block;
+        font-size: 38px;
+    }
+}
