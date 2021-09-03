@@ -1,3 +1,63 @@
 @import "_bootstrap";
 @import "_variable";
 @import "_reboot";
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.quiz-box {
+    width: 90%;
+    max-width: 350px;
+    height: auto;
+    border: $border;
+    border-radius: $border-radius;
+    display: flex;
+    flex-direction: column;
+    h2 {
+        font-size: 18px;
+        padding: 20px;
+        font-weight: 500;
+    }
+    ul {
+        list-style: none;
+        padding: 10px 20px;
+    }
+    li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 5px;
+        input {
+            margin-right: 5px;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+        label {
+            cursor: pointer;
+        }
+    }
+    button {
+        display: block;
+        width: 100%;
+        margin-top: 20px;
+        padding: 10px 5px;
+        background-color: $primary-color;
+        color: $text-d;
+        font-size: 20px;
+        font-weight: 900;
+        border-radius: 0px 0px 10px 10px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        &:hover {
+            background-color: $primary-color-hover;
+        }
+    }
+}
