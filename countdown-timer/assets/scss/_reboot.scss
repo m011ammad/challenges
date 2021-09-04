@@ -1,25 +1,25 @@
-*{
-  font-family: Vazir, "Segoe UI";
+* {
+  font-family: "Segoe UI", Arial, sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  outline: 0;
+  outline: none;
   text-decoration: none;
+  line-height: 1.5;
 }
-html{
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
   margin-top: 0 !important;
 }
-body{
-  background-color: #f5f5f5;
-  cursor: default;
-}
-ol, ul{
+ol, ul {
   list-style-type: none;
 }
-a{
+a {
   color: $text-d;
   &:hover{
     color: $primary-color;
-    font-weight: bold;
   }
 }
