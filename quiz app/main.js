@@ -72,31 +72,40 @@ class QuizHandler {
         currentQuizNumber ++;
     }
     trueChecker() {
-        answerInputs.forEach(inputEl => {
-            console.log(inputEl.value);
+        answerInputs.forEach( inputEl => {
             if(inputEl.checked) {
-                console.log(inputEl.checked);
+                // uncheck input for next question
+                inputEl.checked = false;
+                if(inputEl.id == questionDataBase[currentQuizNumber].correct) {
+                    userScore ++;
+                    console.log(inputEl.value);
+                } else {
+                    console.log('No');
+                }
             }
         });
     }
     checkFinisher() {
-        if(currentQuizNumber == questionDataBase.length) {
-            console.log('finish');
-            submit.style.display = 'none';
-        } else {
+        if(currentQuizNumber < questionDataBase.length) {
             this.lableChanger();
+        } else {
+            document.querySelector('.quiz-box').style.display = 'none';
+            document.getElementById('result').innerHTML = 
+            `Your Score: ${userScore} Out Of ${questionDataBase.length}`;
         }
     }
 }
-quizeHandler = new QuizHandler();
-quizeHandler.lableChanger();
-quizeHandler.setValue();
-quizeHandler.trueChecker();
+let quizHandler = new QuizHandler();
+
+window.addEventListener("DOMContentLoaded", () => {
+  quizHandler.lableChanger();
+  quizHandler.setValue();
+});
 
 submit.addEventListener('click', () => {
-    quizeHandler.currentQuizNumberPluser();
-    quizeHandler.checkFinisher();
+    quizHandler.trueChecker();
+    quizHandler.currentQuizNumberPluser();
+    quizHandler.checkFinisher();
     // lable changer called from checkFinisher() in class
-    quizeHandler.setValue();
-    quizeHandler.trueChecker();
+    quizHandler.setValue();
 } );

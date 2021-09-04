@@ -38,6 +38,10 @@ body {
   align-items: center;
 }
 
+h1 {
+  font-size: 26px;
+}
+
 .quiz-box {
   width: 90%;
   max-width: 350px;
@@ -50,8 +54,11 @@ body {
 
 .quiz-box h2 {
   font-size: 18px;
-  padding: 20px;
+  margin-top: 20px;
+  padding: 0px 20px;
   font-weight: 500;
+  display: block;
+  min-height: 60px;
 }
 
 .quiz-box ul {
