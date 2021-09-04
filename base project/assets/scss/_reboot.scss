@@ -1,0 +1,25 @@
+* {
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  text-decoration: none;
+  line-height: 1.5;
+}
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  margin-top: 0 !important;
+}
+ol, ul {
+  list-style-type: none;
+}
+a {
+  color: $text-d;
+  &:hover{
+    color: $primary-color;
+  }
+}
