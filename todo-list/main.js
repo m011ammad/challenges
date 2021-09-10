@@ -17,6 +17,7 @@ function addToDo(text) {
                         <span class="item-delete material-icons">delete</span>
                     </li>`;
     list.insertAdjacentHTML('beforeend', item);
+    itemsDone = document.querySelectorAll(".item-done");
 }
 
 // ! clear
@@ -49,22 +50,19 @@ add.addEventListener('click', e => {
     idCounter++;
 })
 
-// ! done item
-itemsDone.forEach((value, index) => {
-    value.addEventListener('click', e => {
-        if(value.innerHTML == "done") {
-            value.innerHTML = "crop_square";
-            itemsText[index].style.textDecoration = "none";
+// ! done , delete
+list.addEventListener('click', e => {
+    // ! done item
+    if (e.target.matches(".item-done")) {
+        if (e.target.innerHTML == "done") {
+            e.target.innerHTML = "crop_square";
+            e.target.nextElementSibling.style.textDecoration = "none";
         } else {
-            value.innerHTML = "done";
-            itemsText[index].style.textDecoration = "line-through";
+            e.target.innerHTML = "done";
+            e.target.nextElementSibling.style.textDecoration = "line-through";
         }
-    })
-})
-
-// ! delete item
-itemsDelete.forEach(v => {
-    v.addEventListener('click', () => {
-        v.closest('li').remove();
-    })
+    // ! delete items
+    } else if (e.target.matches(".item-delete")) {
+        e.target.closest("li").remove();
+    }
 })

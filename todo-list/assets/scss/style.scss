@@ -11,9 +11,9 @@ html {
 
 body {
     width: 100%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
-    max-width: 500px;
     margin: 50px auto;
     background-color: $bg-l;
     box-shadow: 0px 7px #444;
@@ -32,6 +32,9 @@ body {
         * {
             color: $text-l;
             font-size: 20px !important;
+        }
+        .clear {
+            cursor: pointer;
         }
     }
     .main-block {
@@ -53,6 +56,9 @@ body {
                 cursor: pointer;
             }
         }
+    }
+    footer {
+        position: relative;
     }
     .footer-block {
         padding: 20px;
@@ -81,7 +87,8 @@ body {
 @media screen and (max-width: 768px) {
     body {
         margin: 0;
-        // min-height: 100vh;
+        max-width: 100%;
+        height: 100vh;
         .header-block {
             border-radius: 0px;
         }
