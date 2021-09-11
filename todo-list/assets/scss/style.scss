@@ -5,19 +5,25 @@
     color: $text-d;
 }
 html {
-    background: linear-gradient(to bottom, #E6DADA, #274046);
+    background: #eee;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 body {
     width: 100%;
+    position: relative;
     max-width: 500px;
+    height: 90vh;
     display: flex;
     flex-direction: column;
-    margin: 50px auto;
+    margin: auto;
     background-color: $bg-l;
-    box-shadow: 0px 7px #444;
+    // box-shadow: 0px 7px #444;
     border-radius: $border-radius;
+    // box-shadow: $shadow;
     .header-block {
         display: flex;
         border-radius: 10px 10px 0px 0px;
@@ -34,16 +40,40 @@ body {
             font-size: 20px !important;
         }
         .clear {
+            background-color: $bg-l;
+            padding: 10px;
+            border-radius: 50%;
+            color: $text-d;
             cursor: pointer;
+            transition: background-color .5s;
+            &:hover {
+                background-color: $primary-color;
+            }
         }
     }
     .main-block {
-        min-height: 300px;
+
+        .list-empty {
+            display: flex;
+            width: 100%;
+            margin-top: 50px;
+            flex-direction: column;
+            h3 {
+                text-align: center;
+            }
+            img {
+                display: block;
+                margin: 10px auto;
+                width: 60%;
+            }
+        }
+
         li {
             padding: 15px 20px;
             border-bottom: 1px solid#ddd;
             display: flex;
             align-items: center;
+            
             .item-done {
                 margin-right: 10px;
                 cursor: pointer;
@@ -54,31 +84,48 @@ body {
             .item-delete {
                 margin-left: auto;
                 cursor: pointer;
+                transition: color .5s;
+                &:hover {
+                    color: #f90000; 
+                }
             }
         }
     }
     footer {
-        position: relative;
+        margin-top: auto;
     }
     .footer-block {
         padding: 20px;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
         display: flex;
-        background-color: #eee;
+        background-color: $bg-d;
+        border-radius: 0 0 $border-radius $border-radius;
         .add-task {
-            // color: $primary-color;
-            font-size: 36px;
+            background-color: $bg-l;
+            border-radius: 50%;
+            font-size: 42px;
             margin-right: 20px;
             cursor: pointer;
+            transition: background-color .5s;
+            &:hover {
+                background-color: $primary-color;
+            }
         }
         input {
             border: none;
             padding: 5px 10px;
             background-color: transparent;
-            border-bottom: 1px solid #aaa;
+            // border-bottom: 1px solid $text-l;
             width: 100%;
             font-size: 20px;
+            color: $text-l;
+            transition: border .5s;
             &:focus {
-                border-bottom: 2px solid #999;
+                border-bottom: 1px solid #999;
+                color: $text-l-hover;
             }
         }
     }
@@ -92,8 +139,9 @@ body {
         .header-block {
             border-radius: 0px;
         }
-        footer {
+        .footer-block {
             margin-top: auto;
+            border-radius: 0;
         }
     }
 }
