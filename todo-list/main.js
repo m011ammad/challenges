@@ -1,4 +1,6 @@
 "use strict";
+
+// giving html elements
 const clear = document.querySelector('.clear');
 const date  = document.querySelector('.date');
 const list  = document.querySelector('.list');
@@ -10,10 +12,13 @@ const itemsDelete = document.querySelectorAll('.item-delete');
 let idCounter;
 let dataList = [];
 
+// ! add function
 function addToDo(text, id, trash) {
+    // if item is in trash don't create it in DOM
     if(trash) {
         return;
     }
+
     const item = `  <li>
                         <span class="item-done material-icons" id="${id}">radio_button_unchecked</span>
                         <span class="item-text"> ${text} </span>
@@ -22,24 +27,9 @@ function addToDo(text, id, trash) {
     list.insertAdjacentHTML('beforeend', item);
 }
 
-// ! clear
-clear.addEventListener('click', e => {
-    let parsedListForClear = JSON.parse(localStorage.getItem('ToDo'));
-    parsedListForClear.forEach(v => {
-        v.trash = true;
-        console.log(v.trash);
-    })
-    // remove all li
-    list.querySelectorAll("li").forEach(v => {
-        v.remove();
-    })
-    window.localStorage.removeItem('ToDo');
-})
-
-let data = localStorage.getItem('ToDo');
-let parsedList = JSON.parse(data);
-console.log(data);
-if(data != null) {
+// ! get localStorage data and save to dataList
+let parsedList = JSON.parse(localStorage.getItem("ToDo"));
+if(parsedList != null) {
     parsedList.forEach(v => {
         addToDo(v.todoText, v.id, v.trash);
         dataList.push({
@@ -49,75 +39,111 @@ if(data != null) {
             trash: v.trash,
         });
     })
-} else {
-    // dataList  = [];
-    let idCounter = 0;
-    console.log('starting ...');
 }
 
 // ! date
 let todayDate = new Date().toISOString().split("T")[0];
 date.innerHTML = todayDate;
 
-// ! add item
+// ! clear
+clear.addEventListener('click', e => {
+    // remove all items from DOM
+    list.querySelectorAll("li").forEach(v => {
+        v.remove();
+    })
+
+    // remove localStorage item
+    window.localStorage.removeItem('ToDo');
+})
+
+// ! click on add item
 add.addEventListener('click', e => {
+
+    // remove emptyList
+    if (
+        document.querySelector(".list-empty") != null) {
+        document.querySelector(".list-empty").remove();
+    }
+
     // get input value
     let inputValue = input.value;
+
+    // set idCounter
+    // if we use other idCounter after refresh the idCounter will be 0 again
     if (dataList.length == 0) {
-        idCounter = 0;
+    // if list empty
+    idCounter = 0;
     } else {
-        idCounter = dataList[dataList.length - 1].id + 1;
+    // give last id and set idCounter value one higher
+    idCounter = dataList[dataList.length - 1].id + 1;
     }
-      // add input value and create li html codes
-      addToDo(inputValue, idCounter);
+
+    // add new item
+    addToDo(inputValue, idCounter);
+
     // clear input
-    input.value = '';
-    // update data list
+    input.value = "";
+
+    // update dataList array
     dataList.push({
-        todoText: inputValue,
-        id: idCounter,
-        done: false,
-        trash: false
-    })
-    window.localStorage.setItem('ToDo', JSON.stringify(dataList));
+    todoText: inputValue,
+    id: idCounter,
+    done: false,
+    trash: false,
+    });
+
+    // update localStorage
+    window.localStorage.setItem("ToDo", JSON.stringify(dataList));
+
+    // update idCounter
     idCounter++;
 })
 
 // ! done , delete
 list.addEventListener('click', e => {
     // ! done item
+    // if click on circle(check) icon
     if (e.target.matches(".item-done")) {
         if (e.target.innerHTML == "task_alt") {
+            // if task is done
+
+            // update dataList
             dataList[e.target.id].done = false;
+            // update localStorage
             window.localStorage.setItem("ToDo", JSON.stringify(dataList));
-            console.log(JSON.parse(localStorage.getItem('ToDo')));
+            
             e.target.innerHTML = "radio_button_unchecked";
             e.target.nextElementSibling.style.textDecoration = "none";
+
+            console.log(localStorage.getItem('ToDo'));
+
         } else {
+            // if task is not done
+
+            // update dataList
             dataList[e.target.id].done = true;
+            // update localStorage
             window.localStorage.setItem("ToDo", JSON.stringify(dataList));
-            console.log(JSON.parse(localStorage.getItem('ToDo')));
+
             e.target.innerHTML = "task_alt";
             e.target.nextElementSibling.style.textDecoration = "line-through";
+
+            console.log(localStorage.getItem("ToDo"));
         }
     // ! delete items
+    // if click of delete icon
     } else if (e.target.matches(".item-delete")) {
-        console.log(e.target);
         dataList[e.target.id].trash = true;
         window.localStorage.setItem("ToDo", JSON.stringify(dataList));
-        console.log(JSON.parse(localStorage.getItem('ToDo')));
         e.target.closest("li").remove();
     }
 })
 
-// setInterval(() => {
-//     console.log(localStorage.getItem('ToDo'));
-// }, 1000);
-
+// ! add text and image if list is empty
 if (dataList.length == 0) {
-  const emptyList = ` <div class="list-empty">
-                            <h3>Your List Is Empty!</h3>
-                            <img src="assets/images/empty.png" alt="">
-                        </div>`;
-  list.insertAdjacentHTML("beforeend", emptyList);
+const emptyList = ` <div class="list-empty">
+                        <h3>Your List Is Empty!</h3>
+                        <img src="assets/images/empty.png" alt="empty list">
+                    </div>`;
+list.insertAdjacentHTML("beforeend", emptyList);
 }
