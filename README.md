@@ -17,5 +17,5 @@ Demo: https://m011ammad.github.io/challenges/countdown-timer
 Description: rock paper scissors using DOM\
 Demo: https://m011ammad.github.io/challenges/rock-paper-scissors
 - [ ] Weather App\
-Description: soon
+Description: soon\
 Demo: soon
