@@ -5,9 +5,13 @@ you can also implement these projects to learn more things And you can get inspi
 
 ## List of projects
 - [x] ToDo List(with localStorage)
+Demo: https://m011ammad.github.io/challenges/todo-list
 - [x] quiz app
+Demo: https://m011ammad.github.io/challenges/quiz%20app
 - [x] countDown timer
+Demo: https://m011ammad.github.io/challenges/countdown-timer
 - [x] rock-paper-scissors
+Demo: https://m011ammad.github.io/challenges/rock-paper-scissors
 - [ ] meditation app
 - [ ] shoping cart
 - [ ] recipe app
