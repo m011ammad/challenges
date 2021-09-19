@@ -13,6 +13,7 @@ const itemsDelete = document.querySelectorAll('.item-delete');
 let idCounter;
 let dataList = [];
 
+
 // ! add function
 function addToDo(text, id, trash) {
     // if item is in trash don't create it in DOM
@@ -28,6 +29,7 @@ function addToDo(text, id, trash) {
     list.insertAdjacentHTML('beforeend', item);
 }
 
+
 // ! get localStorage data and save to dataList
 let parsedList = JSON.parse(localStorage.getItem("ToDo"));
 if(parsedList != null) {
@@ -41,6 +43,7 @@ if(parsedList != null) {
         });
     })
 }
+
 
 // ! date
 let todayDate = new Date();
@@ -73,6 +76,7 @@ switch (todayNumber) {
         break;
 }
 
+
 // ! clear
 clear.addEventListener('click', e => {
     // remove all items from DOM
@@ -84,8 +88,9 @@ clear.addEventListener('click', e => {
     window.localStorage.removeItem('ToDo');
 })
 
-// ! click on add item
-add.addEventListener('click', e => {
+
+// ! after submit(by click and enter) function
+let afterSubmit = e => {
 
     // remove emptyList
     if (
@@ -125,7 +130,17 @@ add.addEventListener('click', e => {
 
     // update idCounter
     idCounter++;
+}
+// ! click on add item
+add.addEventListener('click', afterSubmit);
+// ! add by Enter key
+input.addEventListener('keyup', e => {
+    console.log(1);
+    if(e.key == 'Enter') {
+        afterSubmit(e);
+    }
 })
+
 
 // ! done , delete
 list.addEventListener('click', e => {
@@ -166,6 +181,7 @@ list.addEventListener('click', e => {
         e.target.closest("li").remove();
     }
 })
+
 
 // ! add text and image if list is empty
 if (dataList.length == 0) {
