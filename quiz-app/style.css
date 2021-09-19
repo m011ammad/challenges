@@ -44,7 +44,7 @@ h1 {
 
 .quiz-box {
   width: 90%;
-  max-width: 350px;
+  max-width: 400px;
   height: auto;
   border: 1px solid #c2c2c2;
   border-radius: 10px;
@@ -100,5 +100,5 @@ h1 {
 }
 
 .quiz-box button:hover {
-  background-color: #f5e000;
+  background-color: #f3df00;
 }
