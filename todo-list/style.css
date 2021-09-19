@@ -53,6 +53,7 @@ body {
 }
 
 body .header-block {
+  height: 70px;
   display: flex;
   border-bottom: 1px solid #c2c2c2;
   justify-content: space-between;
@@ -74,6 +75,23 @@ body .header-block .clear:hover {
   background-color: #ffea00;
 }
 
+body .main-block {
+  overflow-y: auto;
+  height: calc(80vh - 145px);
+}
+
+body .main-block::-webkit-scrollbar {
+  width: 5px;
+}
+
+body .main-block::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+body .main-block::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+}
+
 body .main-block .list-empty {
   display: flex;
   width: 100%;
@@ -88,6 +106,7 @@ body .main-block .list-empty h3 {
 body .main-block .list-empty img {
   display: block;
   margin: 10px auto;
+  margin-top: 40px;
   max-width: 150px;
 }
 
@@ -122,18 +141,20 @@ body footer {
 }
 
 body .footer-block {
+  height: 70px;
   padding: 20px;
-  position: absolute;
   bottom: 0;
   right: 0;
   left: 0;
   display: flex;
   border-top: 1px solid #c2c2c2;
   background-color: #fff;
+  align-items: center;
+  border-radius: 0 0 10px 10px;
 }
 
 body .footer-block .add-task {
-  background-color: #fff;
+  background-color: transparent;
   border-radius: 50%;
   font-size: 42px;
   margin-right: 20px;
@@ -162,6 +183,9 @@ body .footer-block input {
   }
   body .header-block {
     border-radius: 0px;
+  }
+  body .main-block {
+    height: calc(100vh - 145px);
   }
   body .footer-block {
     margin-top: auto;

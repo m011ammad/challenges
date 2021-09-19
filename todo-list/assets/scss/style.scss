@@ -22,6 +22,7 @@ body {
     border: $border;
     border-radius: $border-radius;
     .header-block {
+        height: 70px;
         display: flex;
         border-bottom: $border;
         justify-content: space-between;
@@ -41,7 +42,18 @@ body {
         }
     }
     .main-block {
-
+        overflow-y: auto;
+        height: calc(80vh - 145px);
+        // change scrollbar
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: #bbb;
+        }
         .list-empty {
             display: flex;
             width: 100%;
@@ -53,6 +65,7 @@ body {
             img {
                 display: block;
                 margin: 10px auto;
+                margin-top: 40px;
                 max-width: 150px;
             }
         }
@@ -84,16 +97,18 @@ body {
         margin-top: auto;
     }
     .footer-block {
+        height: 70px;
         padding: 20px;
-        position: absolute;
         bottom: 0;
         right: 0;
         left: 0;
         display: flex;
         border-top: $border;
         background-color: $bg-l;
+        align-items: center;
+        border-radius: 0 0 $border-radius $border-radius;
         .add-task {
-            background-color: $bg-l;
+            background-color: transparent;
             border-radius: 50%;
             font-size: 42px;
             margin-right: 20px;
@@ -124,6 +139,9 @@ body {
         height: 100vh;
         .header-block {
             border-radius: 0px;
+        }
+        .main-block {
+            height: calc(100vh - 145px);
         }
         .footer-block {
             margin-top: auto;
