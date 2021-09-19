@@ -143,7 +143,7 @@ list.addEventListener('click', e => {
 if (dataList.length == 0) {
 const emptyList = ` <div class="list-empty">
                         <h3>Your List Is Empty!</h3>
-                        <img src="assets/images/empty.png" alt="empty list">
+                        <img src="assets/images/to-do-list.svg" alt="empty list">
                     </div>`;
 list.insertAdjacentHTML("beforeend", emptyList);
 }
