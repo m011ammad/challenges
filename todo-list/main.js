@@ -3,6 +3,7 @@
 // giving html elements
 const clear = document.querySelector('.clear');
 const date  = document.querySelector('.date');
+const today = document.querySelector('.today');
 const list  = document.querySelector('.list');
 const input = document.querySelector('.input');
 const add   = document.querySelector('.add-task');
@@ -42,8 +43,35 @@ if(parsedList != null) {
 }
 
 // ! date
-let todayDate = new Date().toISOString().split("T")[0];
-date.innerHTML = todayDate;
+let todayDate = new Date();
+date.innerHTML = todayDate.toISOString().split("T")[0];
+// today
+let todayNumber = todayDate.getDay();
+switch (todayNumber) {
+    case 0:
+        today.innerHTML = 'Sunday';
+        break;
+    case 1:
+        today.innerHTML = 'Monday';
+        break;
+    case 2:
+        today.innerHTML = 'Tuesday';
+        break;
+    case 3:
+        today.innerHTML = 'Wednesday';
+        break;
+    case 4:
+        today.innerHTML = 'Thursday';
+        break;
+    case 5:
+        today.innerHTML = 'Friday';
+        break;
+    case 6:
+        today.innerHTML = 'Saturday';
+        break;
+    default:
+        break;
+}
 
 // ! clear
 clear.addEventListener('click', e => {
