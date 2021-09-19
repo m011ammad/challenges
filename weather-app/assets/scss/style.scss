@@ -24,7 +24,7 @@ body {
     width: 100%;
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     .search-input {
         width: 100%;
         font-size: 1.2rem;
@@ -32,6 +32,9 @@ body {
         padding: 5px 10px;
         border: $border;
         border-radius: $border-radius;
+        &:focus {
+            border: 1px solid #777;
+        }
     }
     .search-button {
         display: flex;
@@ -47,7 +50,13 @@ body {
         }
     }
 }
+
+.error-display {
+    color: #ce1212;
+}
+
 .weather-block {
+    margin-top: 20px;
     hr{
         margin: 15px 0px;
         border: none;

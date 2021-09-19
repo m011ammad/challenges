@@ -1,6 +1,8 @@
 // search section
 let searchButton = document.querySelector(".search-button");
 let searchInput = document.querySelector(".search-input");
+// error display
+let errorDisplay = document.querySelector(".error-display");
 // display information
 let weatherCity = document.querySelector(".weather-city");
 let weatherTemp = document.querySelector(".weather-temp span");
@@ -13,7 +15,6 @@ let weatherWind = document.querySelector(".weather-wind span");
 let weatherSea = document.querySelector(".weather-sea span");
 // 
 let userInput = '';
-let flag;
 
 class WeatherRequest {
     constructor(city, apiKey) {
@@ -31,13 +32,17 @@ class WeatherRequest {
         fetch(url)
         .then(response => {
             if(response.status == 404) {
-                flag = true;
+                return false;
             }
             return response.json();
         })
         .then(response => {
             // TODO: is this best practice? pass the data to another method?
             this.changeDOM(response);
+        })
+        .catch(error => {
+            // add a span error under search box
+            errorDisplay.innerHTML = "no results found!"
         })
     }
 
@@ -56,10 +61,10 @@ class WeatherRequest {
     }
 
     unixTimeConvertor(time) {
-        let unix_timestamp = time;
+        let unixTimeStamp = time;
         // Create a new JavaScript Date object based on the timestamp
         // multiplied by 1000 so that the argument is in milliseconds, not seconds.
-        let date = new Date(unix_timestamp * 1000);
+        let date = new Date(unixTimeStamp * 1000);
         // Hours part from the timestamp
         let hours = date.getHours();
         // Minutes part from the timestamp
@@ -72,18 +77,34 @@ class WeatherRequest {
     }
 }
 
+// default city
 let WR = new WeatherRequest('tehran', "391efff1d8a3b30d9aeb6e1533c01c83");
 WR.fetchAPI();
 
+// by click on button
 searchButton.addEventListener('click', e => {
+    // clear errors
+    errorDisplay.innerHTML = "";
+    // get user input
     userInput = searchInput.value;
+    // create an object and call method
     let WR = new WeatherRequest(userInput, "391efff1d8a3b30d9aeb6e1533c01c83");
     WR.fetchAPI();
+    // clear input
+    searchInput.value = "";
 })
+
+//by press enter
 searchInput.addEventListener('keyup', e => {
-    if(e.key == 'Enter') {
-        userInput = searchInput.value;
-        let WR = new WeatherRequest(userInput, "391efff1d8a3b30d9aeb6e1533c01c83");
-        WR.fetchAPI();
+    if (e.key == "Enter") {
+      // clear errors
+      errorDisplay.innerHTML = "";
+      // get user input
+      userInput = searchInput.value;
+      // create an object and call method
+      let WR = new WeatherRequest(userInput,"391efff1d8a3b30d9aeb6e1533c01c83");
+      WR.fetchAPI();
+      // clear input
+      searchInput.value = "";
     }
 })

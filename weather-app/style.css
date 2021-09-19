@@ -53,7 +53,7 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .search-block .search-input {
@@ -63,6 +63,10 @@ body {
   padding: 5px 10px;
   border: 1px solid #c2c2c2;
   border-radius: 10px;
+}
+
+.search-block .search-input:focus {
+  border: 1px solid #777;
 }
 
 .search-block .search-button {
@@ -78,6 +82,14 @@ body {
 
 .search-block .search-button:hover {
   background-color: #f3df00;
+}
+
+.error-display {
+  color: #ce1212;
+}
+
+.weather-block {
+  margin-top: 20px;
 }
 
 .weather-block hr {
